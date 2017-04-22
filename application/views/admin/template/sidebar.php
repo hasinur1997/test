@@ -17,6 +17,14 @@
         <li><a href="<?php echo base_url('abs/create');?>">Add New</a></li>
       </ul>
     </li>
+
+    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Slider</a>
+      <ul>
+        <li><a href="<?php echo base_url('slider/index');?>">All</a></li>
+        <li><a href="<?php echo base_url('slider/create');?>">Add New</a></li>
+      </ul>
+    </li>
+
   </ul>
 </div>
 <!--sidebar-menu-->

@@ -62,21 +62,12 @@
                             </div>
                             <div class="panel-body">
                             <ul class="list-group">
-                                <li class="list-group-item">01. Architectural Design</li>
-                                <li class="list-group-item">02. Teacher, student, researcher and user is an actor.</li>
-                                <li class="list-group-item">03. These attributes includes some sub-attributes.</li>
-                                <li class="list-group-item">04. And the attributes are associated with actors.</li>
-                                <li class="list-group-item">05. Particular actors are associated with particular attributes.</li>
-                                <li class="list-group-item">06. Admin is associated with all the attributes.</li>
-                                <li class="list-group-item">07. That is why he get all the features of this application.</li>
-                                <li class="list-group-item">08. Architectural Design</li>
-                                <li class="list-group-item">09. Teacher, student, researcher and user is an actor.</li>
-                                <li class="list-group-item">10. These attributes includes some sub-attributes.</li>
-                                <li class="list-group-item">11. And the attributes are associated with actors.</li>
-                                <li class="list-group-item">12. Particular actors are associated with particular attributes.</li>
-                                <li class="list-group-item">13. Admin is associated with all the attributes.</li>
-                                <li class="list-group-item">14. That is why he get all the features of this application.</li>
-                                
+                                <?php foreach($rules as $rule):?>
+
+                                <li class="list-group-item"><?php echo $rule->name?></li>
+
+                            <?php endforeach?>
+
                               </ul>
                               </div>
                         </div>
@@ -112,21 +103,7 @@
                                     <h4>ABSTRACT</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <p>The main purpose of the “Online Learning and Exam System” is to make a better solution for
-
-academic Students and Education Board. This application is very essential for an academic
-
-Students and Education Board. Education Board handle the examinations and student results and
-
-for academic Students to handle their online learning and gain online academic certificates.</p>
-                                    
-                                    <p>certificates. It is
-
-also very useful for any students to test himself continuously for their Analytical development in
-
-Science field and for Education Board to make progress in their digitalization work by getting
-
-online analytical exam from the PEC, JSC, SSC, HSC Examinee.</p>
+                                    <p><?php echo $abs->description?></p>
                                     
                                 </div>
                             </div>

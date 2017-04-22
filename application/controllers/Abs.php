@@ -5,7 +5,7 @@ class Abs extends CI_Controller {
 
 	public function index(){
 
-		$data['abs'] = $this->M_Abstract->get();
+		$data['abs'] = $this->M_Abstract->all();
 
 		$this->load->view('admin/template/header');
 		$this->load->view('admin/template/sidebar');
@@ -59,6 +59,25 @@ class Abs extends CI_Controller {
 
 	public function update()
 	{
-		
+
+		$id = $this->input->get('id');
+
+		$this->form_validation->set_rules('description', 'Description', 'required');
+
+		if($this->form_validation->run() == true){
+
+			$data = [
+
+				'description' => $this->input->post('description')
+			];
+
+			$this->M_Abstract->update($id, $data);
+
+			$this->session->set_flashdata('message', 'Your data has been updated');
+
+			$this->edit();
+		}
+
+		$this->edit();
 	}
 }

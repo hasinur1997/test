@@ -1,11 +1,18 @@
 <?php 
 	class M_Abstract extends CI_Model{
 
+		public function all()
+		{
+			$query =  $this->db->get('abstract');
+
+			return $query->result();
+		}
+
 		public function get()
 		{
-		  $query = $this->db->get('abstract');
+		  $query = $this->db->get('abstract', 1);
 
-		  return $query->result();
+		  return $query->row();
 
 		}
 

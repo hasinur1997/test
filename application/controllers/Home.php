@@ -5,8 +5,12 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		
-		$this->load->view('home/index');
+		$data['rules'] =  $this->M_Convention->get();
+
+
+		$data['abs'] = $this->M_Abstract->get();
+
+		$this->load->view('home/index', $data);
 	}
 	
 	public function test()
