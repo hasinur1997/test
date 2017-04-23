@@ -8,17 +8,27 @@
   <div class="container-fluid">
 
     <div class="row-fluid">
-        
-        
-
 
       <div class="span6">
 
+        <?php 
+          if(!empty($_POST)){
+              $file = $_FILES['image']['name'];
+
+              var_dump($file);
+          }
+        ?>
+
         <?php if($this->session->flashdata('message')):?>
             
-          <div class="alert alert-info"> 
-            <p><?php echo $this->session->flashdata('message')?></p>
-          </div>
+          <div class="alert alert-info fade in"> 
+
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            
+            <?php echo $this->session->flashdata('message')?>
+
+         </div>
+
         <?php endif?>
     
         <div class="widget-box">
@@ -30,7 +40,7 @@
 
               <div class="widget-content nopadding">
 
-                <form action="<?php echo base_url('abs/store')?>" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                <form action="<?php echo base_url('slider/store')?>" method="POST" class="form-horizontal" enctype="multipart/form-data" >
 
                   <div class="control-group<?php echo form_error('title') ? ' has-error' : ''?>">
 

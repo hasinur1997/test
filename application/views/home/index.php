@@ -113,57 +113,20 @@
             </div>
         </div>
         <div class="owl-carousel owl-theme">
-                <div class="item">
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        <img src="<?php echo base_url('assets/img/img1.png')?>" alt="">
-                        <h4>SSC PRE TEST</h4>
-                        <p>Feel Free to attain the exam and test your potentiality 
-                        </p>
-                        <a href="">More</a>
-                      </div>
+
+                <?php foreach($sliders as $slider):?>
+                    <div class="item">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <img src="<?php echo base_url('uploads/'.$slider->image)?>" alt="">
+                            <h4><?php echo $slider->title?></h4>
+                            <p><?php echo $slider->description?></p>
+                            <a href="">More</a>
+                          </div>
+                        </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="panel panel-default">
-                     <div class="panel-body">
-                        <img src="<?php echo base_url('assets/img/img1.png')?>" alt="">
-                        <h4>JSC PRE TEST</h4>
-                        <p>Feel Free to attain the exam and test your potentiality /p>
-                        <a href="">More</a>
-                      </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        <img src="<?php echo base_url('assets/img/img1.png')?>" alt="">
-                        <h4>MBA PRE TEST </h4>
-                        <p>Feel Free to attain the exam and test your potentiality </p>
-                        <a href="">More</a>
-                      </div>
-                    </div>
-                </div>
-                <div class="item">
-                   <div class="panel panel-default">
-                  <div class="panel-body">
-                        <img src="<?php echo base_url('assets/img/img1.png')?>" alt="">
-                        <h4>HSC PRE TEST</h4>
-                        <p>Feel Free to attain the exam and test your potentiality </p>
-                        <a href="">More</a>
-                      </div>
-                </div>
-                </div>
-                <div class="item">
-                   <div class="panel panel-default">
-                      <div class="panel-body">
-                        <img src="<?php echo base_url('assets/img/img1.png')?>" alt="">
-                        <h4>Third Term Final PRE TEST</h4>
-                        <p>Feel Free to attain the exam and test your potentiality </p>
-                       <a href="">More</a>
-                      </div>
-                    </div>
-                </div>
+                <?php endforeach?>
+                
             </div>
             <div class="footer-area">
                 <div class="row">

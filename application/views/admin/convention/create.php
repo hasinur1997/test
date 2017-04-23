@@ -16,9 +16,13 @@
 
         <?php if($this->session->flashdata('message')):?>
             
-          <div class="alert alert-info"> 
-            <p><?php echo $this->session->flashdata('message')?></p>
-          </div>
+          <div class="alert alert-info fade in"> 
+
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+
+          <?php echo $this->session->flashdata('message')?>
+          
+      </div>
         <?php endif?>
     
         <div class="widget-box">

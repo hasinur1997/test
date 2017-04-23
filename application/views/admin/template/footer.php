@@ -51,6 +51,11 @@
 function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
+
+function delete_confirmation(){
+
+  confirm('Are your sure want to delete');
+}
 </script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 $(document).ready(function(){
   
     $('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
+    //loop:true,
+    //margin:10,
+    //nav:true,
     autoplay:true,
-    responsive:{
+    /*responsive:{
         0:{
             items:1
         },
@@ -15,7 +15,7 @@ $(document).ready(function(){
         1000:{
             items:5
         }
-    }
+    }*/
 });
     
     

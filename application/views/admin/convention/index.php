@@ -12,7 +12,8 @@
       <div class="span6">
 		<?php if($this->session->flashdata('message')):?>
 			
-			<div class="alert alert-info"> 
+			<div class="alert alert-info fade in"> 
+        <a href="" class="close" data-dismiss="alert"></a>
 				<?php echo $this->session->flashdata('message')?>
 			</div>
 
@@ -33,14 +34,16 @@
                 </tr>
               </thead>
               <tbody>
-
+                <?php $x = 1?>
               	<?php foreach($rules as $rule):?>
                 <tr class="odd gradeX">
-                  <td><?php echo $rule->id?></td>
+                  <td><?php echo $x?></td>
                   <td><?php echo $rule->name?></td>
-                  <td><a href="<?php echo base_url('convention/edit?id='.$rule->id)?>">Edit</a> | <a href="">Delete</a></td>
+                  <td><a href="<?php echo base_url('convention/edit?id='.$rule->id)?>">Edit</a> | <a href="<?php echo base_url('convention/destroy?id='.$rule->id)?>">Delete</a></td>
                   
                 </tr>
+
+                <?php $x++?>
            	 <?php endforeach?>
                 
               </tbody>

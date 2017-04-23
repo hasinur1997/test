@@ -27,6 +27,14 @@ class M_Convention extends CI_Model
 
 		$this->db->update('convention', $data);
 	}
+
+
+	public function delete($id)
+	{
+		$this->db->where('id', $id);
+
+		$this->db->delete('convention');
+	}
 }
 
 ?>

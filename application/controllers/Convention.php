@@ -43,9 +43,13 @@ class Convention extends CI_Controller {
 
 			$this->session->set_flashdata('message', 'Your data has been successfully inserted');
 
+			$this->create();
+
+		}else{
+
+			$this->create();
 		}
 
-		$this->create();
 	}
 
 
@@ -85,14 +89,31 @@ class Convention extends CI_Controller {
 			$this->session->set_flashdata('message', 'Your data has been updated successfully');
 
 			$this->index();
+
+		}else{
+			
+			$this->edit();
 		}
 
-		$this->edit();
+		
 	}
 
 	public function destroy()
 	{
+		$id = $this->input->get('id');
 
+		
+
+		if($this->M_Convention->delete($id)){
+
+			$this->session->set_flashdata('message', 'Your data has been deleted');
+
+			$this->index();
+
+		}else{
+
+			$this->index();
+		}
 	}
 	
 	

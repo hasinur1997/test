@@ -12,7 +12,9 @@
       <div class="span6">
 		<?php if($this->session->flashdata('message')):?>
 			
-			<div class="alert alert-info"> 
+			<div class="alert alert-info fade in"> 
+
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
 				<?php echo $this->session->flashdata('message')?>
 			</div>
 
@@ -33,14 +35,15 @@
                 </tr>
               </thead>
               <tbody>
-
+                <?php $x = 1?>
               	<?php foreach($abs as $ab):?>
                 <tr class="odd gradeX">
-                  <td><?php echo $ab->id?></td>
+                  <td><?php echo $x?></td>
                   <td><?php echo $ab->description?></td>
-                  <td><a href="<?php echo base_url('abs/edit?id='.$ab->id)?>">Edit</a> | <a href="">Delete</a></td>
+                  <td><a href="<?php echo base_url('abs/edit?id='.$ab->id)?>">Edit</a> | <a href="<?php echo base_url('abs/destroy?id='.$ab->id)?>">Delete</a></td>
                   
                 </tr>
+                <?php $x++?>
            	 <?php endforeach?>
                 
               </tbody>

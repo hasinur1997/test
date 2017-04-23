@@ -40,9 +40,13 @@ class Abs extends CI_Controller {
 			$this->session->set_flashdata('message', 'Your data has been successfully submited');
 
 			$this->create();
+			
+		}else{
+
+			$this->create();
 		}
 
-		$this->create();
+		
 	}
 
 
@@ -76,8 +80,29 @@ class Abs extends CI_Controller {
 			$this->session->set_flashdata('message', 'Your data has been updated');
 
 			$this->edit();
+
+		}else{
+
+			$this->edit();
 		}
 
-		$this->edit();
+		
+	}
+
+
+	public function destroy()
+	{
+		$id = $this->input->get('id');
+
+		if($this->M_Abstract->delete($id)){
+
+			$this->session->set_flashdata('message', 'Your data has been deleted');
+
+			$this->index();
+
+		}else{
+
+			$this->index();
+		}
 	}
 }

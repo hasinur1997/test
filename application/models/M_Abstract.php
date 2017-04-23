@@ -31,7 +31,16 @@
 
 		public function update($id, $data)
 		{
+			$this->db->where('id', $id);
 
+			$this->db->update('abstract', $data);
+		}
+
+		public function delete($id)
+		{
+			$this->db->where('id', $id);
+
+			$this->db->delete('abstract');
 		}
 	}
 

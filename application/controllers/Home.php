@@ -10,6 +10,9 @@ class Home extends CI_Controller {
 
 		$data['abs'] = $this->M_Abstract->get();
 
+
+		$data['sliders'] = $this->M_Slider->get();
+
 		$this->load->view('home/index', $data);
 	}
 	

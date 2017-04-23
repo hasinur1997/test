@@ -16,7 +16,8 @@
 
         <?php if($this->session->flashdata('message')):?>
             
-          <div class="alert alert-info"> 
+          <div class="alert alert-info fade in">
+          <a href="#" class="close" data-dismiss="alert">&times;</a> 
             <p><?php echo $this->session->flashdata('message')?></p>
           </div>
         <?php endif?>
