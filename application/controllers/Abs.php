@@ -4,105 +4,139 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Abs extends CI_Controller {
 
 	public function index(){
+		if($this->session->has_userdata('user')){
 
-		$data['abs'] = $this->M_Abstract->all();
+			$data['abs'] = $this->M_Abstract->all();
 
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/template/sidebar');
-		$this->load->view('admin/abstract/index', $data);
-		$this->load->view('admin/template/footer');
+			$this->load->view('admin/template/header');
+			$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/abstract/index', $data);
+			$this->load->view('admin/template/footer');
+
+		}else{
+
+			redirect('admin/login');
+		}
 	}
 
 
 	public function create()
 	{
-		$this->load->view('admin/template/header');
+		if($this->session->has_userdata('user')){
+			$this->load->view('admin/template/header');
 
-		$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/template/sidebar');
 
-		$this->load->view('admin/abstract/create');
+			$this->load->view('admin/abstract/create');
 
-		$this->load->view('admin/template/footer');
+			$this->load->view('admin/template/footer');
+
+		}else{
+
+			redirect('admin/login');
+		}
 	}
 
 
 	public function store()
 	{
-		$this->form_validation->set_rules('description', 'Description', 'required');
+		if($this->session->has_userdata('user')){
 
-		if($this->form_validation->run() == true){
+			$this->form_validation->set_rules('description', 'Description', 'required');
 
-			$data = [ 
-				'description' => $this->input->post('description')
-			];
+			if($this->form_validation->run() == true){
 
-			$this->M_Abstract->create($data);
-			$this->session->set_flashdata('message', 'Your data has been successfully submited');
+				$data = [ 
+					'description' => $this->input->post('description')
+				];
 
-			$this->create();
-			
+				$this->M_Abstract->create($data);
+				$this->session->set_flashdata('message', 'Your data has been successfully submited');
+
+				$this->create();
+				
+			}else{
+
+				$this->create();
+			}
+
 		}else{
-
-			$this->create();
+			redirect('admin/login');
 		}
-
-		
 	}
 
 
 	public function edit()
 	{
-		$id = $this->input->get('id');
-		$data['edit'] = $this->M_Abstract->show($id);
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/template/sidebar');
-		$this->load->view('admin/abstract/edit', $data);
-		$this->load->view('admin/template/footer');
+		if($this->session->has_userdata('user')){
+
+			$id = $this->input->get('id');
+			$data['edit'] = $this->M_Abstract->show($id);
+			$this->load->view('admin/template/header');
+			$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/abstract/edit', $data);
+			$this->load->view('admin/template/footer');
+
+		}else{
+
+			redirect('admin/login');
+		}
 	}
 
 
 	public function update()
 	{
+		if($this->session->has_userdata('user')){
 
-		$id = $this->input->get('id');
+			$id = $this->input->get('id');
 
-		$this->form_validation->set_rules('description', 'Description', 'required');
+			$this->form_validation->set_rules('description', 'Description', 'required');
 
-		if($this->form_validation->run() == true){
+			if($this->form_validation->run() == true){
 
-			$data = [
+				$data = [
 
-				'description' => $this->input->post('description')
-			];
+					'description' => $this->input->post('description')
+				];
 
-			$this->M_Abstract->update($id, $data);
+				$this->M_Abstract->update($id, $data);
 
-			$this->session->set_flashdata('message', 'Your data has been updated');
+				$this->session->set_flashdata('message', 'Your data has been updated');
 
-			$this->edit();
+				$this->edit();
+
+			}else{
+
+				$this->edit();
+			}
 
 		}else{
 
-			$this->edit();
+			redirect('admin/login');
 		}
-
 		
 	}
 
 
 	public function destroy()
 	{
-		$id = $this->input->get('id');
+		if($this->session->has_userdata('user')){
 
-		if($this->M_Abstract->delete($id)){
+			$id = $this->input->get('id');
 
-			$this->session->set_flashdata('message', 'Your data has been deleted');
+			if($this->M_Abstract->delete($id)){
 
-			$this->index();
+				$this->session->set_flashdata('message', 'Your data has been deleted');
 
+				$this->index();
+
+			}else{
+
+				$this->index();
+			}
 		}else{
 
-			$this->index();
+			redirect('admin/login');
 		}
 	}
 }

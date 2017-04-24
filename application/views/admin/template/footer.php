@@ -5,6 +5,8 @@
 </div>
 
 <!--end-Footer-part-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
 <script src="<?php echo base_url('include/js/excanvas.min.js')?>"></script> 
 <script src="<?php echo base_url('include/js/jquery.min.js')?>"></script> 
@@ -27,7 +29,7 @@
 <script src="<?php echo base_url('include/js/matrix.popover.js')?>"></script> 
 <script src="<?php echo base_url('include/js/jquery.dataTables.min.js')?>"></script> 
 <script src="<?php echo base_url('include/js/matrix.tables.js')?>"></script> 
-
+<!-- Latest compiled and minified JavaScript -->
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
   // a different page. Ignore if the value returned is a null string:

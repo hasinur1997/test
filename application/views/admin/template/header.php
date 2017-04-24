@@ -7,12 +7,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="<?php echo base_url('include/css/bootstrap-responsive.min.css')?>" />
 
 <link rel="stylesheet" href="<?php echo base_url('include/css/bootstrap.min.css')?>" />
 
-<link rel="stylesheet" href="<?php echo base_url('include/css/bootstrap-responsive.min.css')?>" />
 
-<link rel="stylesheet" href="<?pph echo base_url('include/css/fullcalendar.css')?>" />
+
+<link rel="stylesheet" href="<?php echo base_url('include/css/fullcalendar.css')?>" />
 
 <link rel="stylesheet" href="<?php echo base_url('include/css/matrix-style.css')?>" />
 
@@ -23,6 +28,8 @@
 <link rel="stylesheet" href="<?php echo base_url('include/css/jquery.gritter.css')?>" />
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+
 
 </head>
 <body>
@@ -60,7 +67,7 @@
       </ul>
     </li>
     <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    <li class=""><a title="" href="<?php echo base_url('admin/logout')?>"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
   </ul>
 </div>
 <!--close-top-Header-menu-->

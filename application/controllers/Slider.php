@@ -3,91 +3,124 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Slider extends CI_Controller {
 
+
 	public function index()
 	{
-		$data['sliders'] = $this->M_Slider->get();
 
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/template/sidebar');
-		$this->load->view('admin/slider/index', $data);
-		$this->load->view('admin/template/footer');
+		if(!$this->session->has_userdata('user')){
+
+			redirect('admin/login');
+
+		}else{
+
+			$data['sliders'] = $this->M_Slider->get();
+
+			$this->load->view('admin/template/header');
+			$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/slider/index', $data);
+			$this->load->view('admin/template/footer');
+		}
+		
 	}
 
 	public function create()
 	{
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/template/sidebar');
-		$this->load->view('admin/slider/create');
-		$this->load->view('admin/template/footer');
+		if($this->session->has_userdata('user')){
+
+			$this->load->view('admin/template/header');
+			$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/slider/create');
+			$this->load->view('admin/template/footer');
+			
+		}else{
+
+			redirect('admin/login');
+		}
+		
 	}
 
 
 	public function store()
 	{
-		$config['upload_path'] = './uploads/';
+		if($this->session->has_userdata('user')){
 
-		$config['allowed_types'] = 'gif|jpg|png';
+			$config['upload_path'] = './uploads/';
 
-		$this->load->library('upload', $config);
+			$config['allowed_types'] = 'gif|jpg|png';
 
-		
+			$this->load->library('upload', $config);
 
-		$this->form_validation->set_rules('title', 'Title', 'required');
+			
 
-		$this->form_validation->set_rules('description', 'Description', 'required');
+			$this->form_validation->set_rules('title', 'Title', 'required');
 
-		//$this->form_validation->set_rules('image', 'Image', 'required');
+			$this->form_validation->set_rules('description', 'Description', 'required');
 
-		if($this->form_validation->run() == true){
+			//$this->form_validation->set_rules('image', 'Image', 'required');
 
-			$this->upload->do_upload('image');
+			if($this->form_validation->run() == true){
 
-			$file = $this->upload->data();
+				$this->upload->do_upload('image');
 
-			$data = [ 
+				$file = $this->upload->data();
 
-				'title' => $this->input->post('title'),
+				$data = [ 
 
-				'description' => $this->input->post('description'),
+					'title' => $this->input->post('title'),
 
-				'image' => $file['file_name']
-			];
+					'description' => $this->input->post('description'),
 
-			$this->M_Slider->create($data);
+					'image' => $file['file_name']
+				];
 
-			//$this->upload->do_upload('image');
+				$this->M_Slider->create($data);
 
-			$this->session->set_flashdata('message', 'Your data has been inserted');
+				//$this->upload->do_upload('image');
 
-			$this->create();
+				$this->session->set_flashdata('message', 'Your data has been inserted');
+
+				$this->create();
+
+			}else{
+
+				$this->create();
+			}
 
 		}else{
 
-			$this->create();
+			redirect('admin/login');
 		}
-
-		
 	}
 
 	public function edit()
 	{
-		$id = $this->input->get('id');
+		if($this->session->has_userdata('user')){
 
-		$data['edit'] = $this->M_Slider->first($id);
+			$id = $this->input->get('id');
 
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/template/sidebar');
-		$this->load->view('admin/slider/edit', $data);
-		$this->load->view('admin/template/footer');
+			$data['edit'] = $this->M_Slider->first($id);
+
+			$this->load->view('admin/template/header');
+			$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/slider/edit', $data);
+			$this->load->view('admin/template/footer');
+
+		}else{
+
+			redirect('admin/login');
+		}
+		
 	}
 
 	public function update()
 	{
-		$id = $this->input->get('id');
+		if($this->session->has_userdata('user')){
 
-		$this->form_validation->set_rules('title', 'Title', 'required');
+			$id = $this->input->get('id');
 
-		$this->form_validation->set_rules('description', 'Description', 'required');
+			$this->form_validation->set_rules('title', 'Title', 'required');
+
+			$this->form_validation->set_rules('description', 'Description', 'required');
 
 		if($this->form_validation->run() == true){
 
@@ -130,33 +163,47 @@ class Slider extends CI_Controller {
 			$this->edit();
 
 		}else{
+
 			$this->edit();
 		}
+
+
+
+		}else{
+
+			redirect('admin/login');
+		}
+
+
+		
 
 
 	}
 
 	public function destroy()
 	{
-		$id = $this->input->get('id');
+		if($this->session->has_userdata('user')){
 
-		$data = $this->M_Slider->first($id);
+			$id = $this->input->get('id');
 
-		$image = 'uploads/'.$data->image;
+			$data = $this->M_Slider->first($id);
 
-		var_dump($image);
 
-		exit();
+			if($this->M_Slider->delete($id)){
 
-		if($this->M_Slider->delete($id)){
+				
+				$this->session->set_flashdata('message', 'Your data has been deleted');
 
-			delete_files('./uploads/'.$image);
+				$this->index();
 
-			$this->session->set_flashdata('message', 'Your data has been deleted');
+			}else{
 
-			$this->index();
+				$this->index();
+			}
+
 		}else{
-			$this->index();
+
+			redirect('admin/login');
 		}
 	}
 

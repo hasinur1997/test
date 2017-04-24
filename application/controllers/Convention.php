@@ -5,51 +5,70 @@ class Convention extends CI_Controller {
 
 	public function index()
 	{
-		$data['rules'] = $this->M_Convention->get();
+		if($this->session->has_userdata('user')){
 
-		$this->load->view('admin/template/header');
+			$data['rules'] = $this->M_Convention->get();
 
-		$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/template/header');
 
-		$this->load->view('admin/convention/index', $data);
+			$this->load->view('admin/template/sidebar');
 
-		$this->load->view('admin/template/footer');
+			$this->load->view('admin/convention/index', $data);
 
+			$this->load->view('admin/template/footer');
+
+		}else{
+
+			redirect('admin/login');
+		}
 
 	}
 
 	public function create()
 	{
-		$this->load->view('admin/template/header');
+		if($this->session->has_userdata('user')){
 
-		$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/template/header');
 
-		$this->load->view('admin/convention/create');
+			$this->load->view('admin/template/sidebar');
 
-		$this->load->view('admin/template/footer');
+			$this->load->view('admin/convention/create');
+
+			$this->load->view('admin/template/footer');
+
+		}else{
+
+			redirect('admin/login');
+		}
 	}
 
 	public function store()
 	{
-		$this->form_validation->set_rules('name', 'Rules', 'required');
+		if($this->session->has_userdata('user')){
 
-		if($this->form_validation->run() == true){
+			$this->form_validation->set_rules('name', 'Rules', 'required');
 
-			$data = [ 
-				'name' => $this->input->post('name')
-			];
+			if($this->form_validation->run() == true){
 
-			$this->M_Convention->create($data);
+				$data = [ 
+					'name' => $this->input->post('name')
+				];
 
-			$this->session->set_flashdata('message', 'Your data has been successfully inserted');
+				$this->M_Convention->create($data);
 
-			$this->create();
+				$this->session->set_flashdata('message', 'Your data has been successfully inserted');
+
+				$this->create();
+
+			}else{
+
+				$this->create();
+			}
 
 		}else{
 
-			$this->create();
+			redirect('admin/login');
 		}
-
 	}
 
 
@@ -57,14 +76,20 @@ class Convention extends CI_Controller {
 
 	public function edit()
 	{
-		$id = $this->input->get('id');
+		if($this->session->has_userdata('user')){
+			$id = $this->input->get('id');
 
-		$data['edit'] = $this->M_Convention->show($id);
+			$data['edit'] = $this->M_Convention->show($id);
 
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/template/sidebar');
-		$this->load->view('admin/convention/edit', $data);
-		$this->load->view('admin/template/footer');
+			$this->load->view('admin/template/header');
+			$this->load->view('admin/template/sidebar');
+			$this->load->view('admin/convention/edit', $data);
+			$this->load->view('admin/template/footer');
+
+		}else{
+
+			redirect('admin/login');
+		}
 	}
 
 
@@ -72,47 +97,58 @@ class Convention extends CI_Controller {
 
 	public function update()
 	{
-		$id = $this->input->get('id');
+		if($this->session->has_userdata('user')){
+			$id = $this->input->get('id');
 
-		$this->form_validation->set_rules('name', 'Rule', 'required');
+			$this->form_validation->set_rules('name', 'Rule', 'required');
 
-		if($this->form_validation->run() == true){
+			if($this->form_validation->run() == true){
 
-			$data = [
+				$data = [
 
-				'name' => $this->input->post('name')
+					'name' => $this->input->post('name')
 
-			];
+				];
 
-			$this->M_Convention->update($id, $data);
+				$this->M_Convention->update($id, $data);
 
-			$this->session->set_flashdata('message', 'Your data has been updated successfully');
+				$this->session->set_flashdata('message', 'Your data has been updated successfully');
 
-			$this->index();
+				$this->index();
+
+			}else{
+				
+				$this->edit();
+			}
 
 		}else{
-			
-			$this->edit();
-		}
 
+			redirect('admin/login');
+		}
 		
 	}
 
 	public function destroy()
 	{
-		$id = $this->input->get('id');
+		if($this->session->has_userdata('user')){
+			$id = $this->input->get('id');
 
-		
+			
 
-		if($this->M_Convention->delete($id)){
+			if($this->M_Convention->delete($id)){
 
-			$this->session->set_flashdata('message', 'Your data has been deleted');
+				$this->session->set_flashdata('message', 'Your data has been deleted');
 
-			$this->index();
+				$this->index();
+
+			}else{
+
+				$this->index();
+			}
 
 		}else{
 
-			$this->index();
+			redirect('admin/login');
 		}
 	}
 	
